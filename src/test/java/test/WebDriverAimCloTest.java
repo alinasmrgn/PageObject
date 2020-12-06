@@ -11,6 +11,7 @@ public class WebDriverAimCloTest {
 
     private WebDriver driver;
     public static AimCloBagPage aimCloBagPage;
+    public static AimCloEmptyBagPage aimCloEmptyBagPage;
     public static AimCloKardiganPage aimCloKardiganPage;
 
     @BeforeMethod(alwaysRun = true)
@@ -26,10 +27,23 @@ public class WebDriverAimCloTest {
         aimCloBagPage=aimCloKardiganPage.openPage()
                 .addToBag()
                 .goToBag()
-                .openBagPage();
+                .checkNotEmptyBagPage();
         String expectedResult=aimCloBagPage.getTextFromBag();
         Assert.assertEquals(expectedResult,"Кардиган удлиненный, серый");
     }
+
+    @Test
+    public void deleteFromBagTest() {
+        aimCloKardiganPage= new AimCloKardiganPage(driver);
+        aimCloEmptyBagPage=aimCloKardiganPage.openPage()
+                .addToBag()
+                .goToBag()
+                .openBagPage()
+                .deleteFromBag();
+        String expectedResult=aimCloEmptyBagPage.getTextFromEmptyBag();
+        Assert.assertEquals(expectedResult,"Корзина пуста");
+    }
+
 
     @AfterMethod(alwaysRun = true)
     public void driverShutDown(){

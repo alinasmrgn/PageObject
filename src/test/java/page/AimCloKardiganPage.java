@@ -18,6 +18,9 @@ public class AimCloKardiganPage {
     @FindBy(xpath = "//div[@class='add-basket__footer']")
     private WebElement goToLookBagButton;
 
+    @FindBy(xpath = "//div[@class='close']")
+    private WebElement deleteFromBagButton;
+
     public AimCloKardiganPage(WebDriver driver)
     {
         this.driver = driver;
@@ -38,11 +41,20 @@ public class AimCloKardiganPage {
         goToBagButton.click();
         return this;
     }
+    public AimCloKardiganPage openBagPage() {
+        goToLookBagButton.click();
+        return this;
+    }
+    public AimCloEmptyBagPage deleteFromBag() {
+        deleteFromBagButton.click();
+        return new AimCloEmptyBagPage(driver);
+    }
 
-    public AimCloBagPage openBagPage() {
+    public AimCloBagPage checkNotEmptyBagPage() {
         goToLookBagButton.click();
         return new AimCloBagPage(driver);
     }
+
 
 
 

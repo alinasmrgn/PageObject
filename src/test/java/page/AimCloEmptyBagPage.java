@@ -5,20 +5,21 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class AimCloBagPage {
+public class AimCloEmptyBagPage {
     private WebDriver driver;
 
-    @FindBy(xpath = "//div[@class='tovar']//a")
-    private WebElement KardiganInBag;
+    @FindBy(xpath = "//*[text()='Корзина пуста']")
+    private WebElement KardiganOutOfBag;
 
-    public AimCloBagPage(WebDriver driver)
+    public AimCloEmptyBagPage(WebDriver driver)
     {
         this.driver = driver;
         PageFactory.initElements(driver,this);
     }
 
-    public String getTextFromBag()
+    public String getTextFromEmptyBag()
     {
-        return KardiganInBag.getText();
+        return KardiganOutOfBag.getText();
     }
 }
+
