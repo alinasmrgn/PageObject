@@ -13,6 +13,8 @@ public class WebDriverAimCloTest {
     public static AimCloBagPage aimCloBagPage;
     public static AimCloEmptyBagPage aimCloEmptyBagPage;
     public static AimCloKardiganPage aimCloKardiganPage;
+    public static AimCloSearchJemperPage aimCloSearchJemperPage;
+    public static AimCloSearchResultsPage aimCloSearchResultsPage;
 
     @BeforeMethod(alwaysRun = true)
     public void driverSetup(){
@@ -43,7 +45,16 @@ public class WebDriverAimCloTest {
         String expectedResult=aimCloEmptyBagPage.getTextFromEmptyBag();
         Assert.assertEquals(expectedResult,"Корзина пуста");
     }
-
+    @Test
+    public void searchJemperTest() {
+        aimCloSearchJemperPage = new AimCloSearchJemperPage(driver);
+        aimCloSearchResultsPage = aimCloSearchJemperPage.openMainPage()
+                .openSearch()
+                .searchForTerms("Джемпер из хлопка с коротким рукавом, бежевый")
+                .searchForTermsResults();
+        String expectedResult=aimCloSearchResultsPage.getTextFromSearchResultsPage();
+        Assert.assertEquals(expectedResult,"Джемпер из хлопка с коротким рукавом, бежевый");
+    }
 
     @AfterMethod(alwaysRun = true)
     public void driverShutDown(){
