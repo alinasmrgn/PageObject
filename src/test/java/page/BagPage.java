@@ -8,6 +8,11 @@ import org.openqa.selenium.support.PageFactory;
 import wait.WaitWebElement;
 
 public class BagPage extends AbstractPageWithStaticUrl {
+    @FindBy(xpath = "//div[@class='tovar']//a")
+    private WebElement bagPageResult;
+
+    @FindBy(xpath = "//*[text()='Корзина пуста']")
+    private WebElement emptyBagPageResult;
 
     @FindBy(xpath = "//div[@class='close']")
     private WebElement deleteFromBagPageButton;
@@ -21,22 +26,6 @@ public class BagPage extends AbstractPageWithStaticUrl {
         driver.get("https://aimclo.ru/basket/");
         return this;
     }
-
-    @FindBy(xpath = "//div[@class='tovar']//a")
-    private WebElement bagPageResult;
-
-    public boolean checkDeleteProductToBagPage() {
-        try {
-            WaitWebElement.waitWebElementLocatedBy(driver, By
-                    .xpath("//*[text()='Корзина пуста']"));
-            return true;
-        }
-        catch (Exception e){
-            return false;
-        }
-    }
-    @FindBy(xpath = "//*[text()='Корзина пуста']")
-    private WebElement emptyBagPageResult;
 
     public BagPage deleteFromBagPage() {
         deleteFromBagPageButton.click();
