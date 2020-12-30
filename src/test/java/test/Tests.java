@@ -8,7 +8,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import page.*;
 
-public class WebDriverAimCloTest {
+public class Tests {
 
     private WebDriver driver;
     private final String partUrlPageWithProduct = "kardigany/kardigan-udlinennyy-seryy/";

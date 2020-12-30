@@ -22,16 +22,6 @@ public class BagPage extends AbstractPageWithStaticUrl {
         return this;
     }
 
-    public boolean checkAddProductToBagPage() {
-        try {
-            WaitWebElement.waitWebElementLocatedBy(driver, By
-                    .xpath("//div[@class='tovar']//a and text()='Кардиган удлиненный, серый']"));
-            return true;
-        }
-        catch (Exception e){
-            return false;
-        }
-    }
     @FindBy(xpath = "//div[@class='tovar']//a")
     private WebElement bagPageResult;
 
